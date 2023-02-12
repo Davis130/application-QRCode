@@ -8,16 +8,32 @@ class Main(QtWidgets.QMainWindow):
         self.ui = QtWidgets.QWidget(self)
         
         self.setCentralWidget(self.ui)
+        
+
         self.ui.combo_ville = QtWidgets.QComboBox()
         self.ui.combo_site = QtWidgets.QComboBox()
         self.ui.combo_entrepot_physique = QtWidgets.QComboBox()
+        self.ui.input_entrepot_logique = QtWidgets.QLineEdit()
         self.ui.combo_etat = QtWidgets.QComboBox()
         self.ui.combo_sous_etat = QtWidgets.QComboBox()
         self.ui.combo_motif = QtWidgets.QComboBox()
         self.ui.combo_grade = QtWidgets.QComboBox()
         self.ui.combo_blanchiment = QtWidgets.QComboBox()
-        self.ui.combo_entrepot_logique = QtWidgets.QLineEdit()
-        self.ui.combo_compte_gl = QtWidgets.QComboBox()
+        self.ui.input_compte_gl = QtWidgets.QLineEdit()
+        self.ui.input_id_rebut = QtWidgets.QLineEdit()
+
+        self.ui.label_ville = QtWidgets.QLabel("Ville")
+        self.ui.label_Site = QtWidgets.QLabel("Site")
+        self.ui.label_stock = QtWidgets.QLabel("Stock")
+        self.ui.label_entrepot_logique = QtWidgets.QLabel("Entrepôt Logique")
+        self.ui.label_Etat_de_actif = QtWidgets.QLabel("Etat de l'actif")
+        self.ui.label_sous_etat_actif = QtWidgets.QLabel("Sous-état de l'actif")
+        self.ui.label_motif= QtWidgets.QLabel("Motif")
+        self.ui.label_grade = QtWidgets.QLabel("Grade")
+        self.ui.label_blanchiment = QtWidgets.QLabel("Blanchiment")
+        self.ui.label_compte_gl = QtWidgets.QLabel("Compte GL")
+        self.ui.label_id_rebut = QtWidgets.QLabel("ID Rebut")
+
 
 
         self.ui.combo_ville.addItems(("","Marseille",
@@ -47,26 +63,45 @@ class Main(QtWidgets.QMainWindow):
         self.ui.combo_etat.currentTextChanged.connect(self._updateCombo_sous_etat)
         self.ui.combo_sous_etat.currentTextChanged.connect(self._updateCombo_motif)
         
-        self.ui.combo_etat.addItems(("En stock","En cours d'utilisation"))
+        self.ui.combo_etat.addItems(("En stock","En cours d'utilisation","En cours de transit"))
         
  
-        self.ui.layout = QtWidgets.QVBoxLayout()
-        self.ui.layout.addWidget(self.ui.combo_ville)
-        self.ui.layout.addWidget(self.ui.combo_site)
-        self.ui.layout.addWidget(self.ui.combo_entrepot_physique)
-        self.ui.layout.addWidget(self.ui.combo_etat)
-        self.ui.layout.addWidget(self.ui.combo_sous_etat)
-        self.ui.layout.addWidget(self.ui.combo_motif)
-        self.ui.layout.addWidget(self.ui.combo_grade)
-        self.ui.layout.addWidget(self.ui.combo_blanchiment)
-        self.ui.layout.addWidget(self.ui.combo_entrepot_logique)
-        self.ui.layout.addWidget(self.ui.combo_compte_gl)
+        self.ui.layout = QtWidgets.QGridLayout()
+        self.ui.layout.addWidget(self.ui.combo_ville,1,1)
+        self.ui.layout.addWidget(self.ui.combo_site,2,1)
+        self.ui.layout.addWidget(self.ui.combo_entrepot_physique,3,1)
+        self.ui.layout.addWidget(self.ui.input_entrepot_logique,4,1)
+        self.ui.layout.addWidget(self.ui.combo_etat,5,1)
+        self.ui.layout.addWidget(self.ui.combo_sous_etat,6,1)
+        self.ui.layout.addWidget(self.ui.combo_motif,7,1)
+        self.ui.layout.addWidget(self.ui.combo_grade,8,1)
+        self.ui.layout.addWidget(self.ui.combo_blanchiment,9,1)
+        self.ui.layout.addWidget(self.ui.input_compte_gl,10,1)
+        self.ui.layout.addWidget(self.ui.input_id_rebut,11,1)
+
+
+        self.ui.layout.addWidget(self.ui.label_ville,1,0)
+        self.ui.layout.addWidget(self.ui.label_Site,2,0)
+        self.ui.layout.addWidget(self.ui.label_stock,3,0)
+        self.ui.layout.addWidget(self.ui.label_entrepot_logique,4,0)
+        self.ui.layout.addWidget(self.ui.label_Etat_de_actif,5,0)
+        self.ui.layout.addWidget(self.ui.label_sous_etat_actif,6,0)
+        self.ui.layout.addWidget(self.ui.label_motif,7,0)
+        self.ui.layout.addWidget(self.ui.label_grade,8,0)
+        self.ui.layout.addWidget(self.ui.label_blanchiment,9,0)
+        self.ui.layout.addWidget(self.ui.label_compte_gl,10,0)
+        self.ui.layout.addWidget(self.ui.label_id_rebut,11,0)
+       
         self.ui.setLayout(self.ui.layout)
+
+        
+
+
         self.show()
  
     def _updateCombo_sous_etat(self, text):
         self.ui.combo_sous_etat.clear()
-        if text == "En stock":
+        if text == "En stock" or text == "En cours de transit":
             self.ui.combo_sous_etat.addItems(("A arbitrer",
                             "A livrer",
                             "A préparer",
