@@ -68,6 +68,7 @@ class Main(QtWidgets.QMainWindow):
         self.ui.combo_site.currentTextChanged.connect(self._updateCombo_entrepot_physique)
         self.ui.combo_etat.currentTextChanged.connect(self._updateCombo_sous_etat)
         self.ui.combo_sous_etat.currentTextChanged.connect(self._updateCombo_motif)
+        self.ui.combo_ville.currentTextChanged.connect(self._updateLineText)
         #self.ui.input_ligne_qrcode.insert(self.test)
 
 
@@ -235,10 +236,10 @@ class Main(QtWidgets.QMainWindow):
             self.ui.combo_entrepot_physique.addItems(("IFG - 73 - TECHNOLAC_CENTAURE_RDC AILE BELLEDONNE_BUREAU INFOGERANT",))
 
 
-    def find(self,content):
-        self.ui.combo_entrepot_physique.currentText()
-        return content
-
+    def _updateLineText(self,text):
+        text
+        self.ui.input_ligne_qrcode.clear()
+        self.ui.input_ligne_qrcode.setText(text)
    
             
 if __name__== '__main__':
