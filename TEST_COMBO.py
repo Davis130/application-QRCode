@@ -6,8 +6,9 @@ class Main(QtWidgets.QMainWindow):
     def __init__(self, parent):
         super().__init__()
         self.ui = QtWidgets.QWidget(self)
-        
+        self.setWindowTitle("Application QRCode")
         self.setCentralWidget(self.ui)
+        self.setFixedSize(1000,400)
 
         self.ui.label_ville = QtWidgets.QLabel("Ville")
         self.ui.label_Site = QtWidgets.QLabel("Site")
@@ -20,6 +21,9 @@ class Main(QtWidgets.QMainWindow):
         self.ui.label_blanchiment = QtWidgets.QLabel("Blanchiment")
         self.ui.label_compte_gl = QtWidgets.QLabel("Compte GL")
         self.ui.label_id_rebut = QtWidgets.QLabel("ID Rebut")
+        self.ui.label_ligne_qrcode = QtWidgets.QLabel("Ligne pour QRCode")
+
+        
         
         self.ui.combo_ville = QtWidgets.QComboBox()
         self.ui.combo_site = QtWidgets.QComboBox()
@@ -32,6 +36,9 @@ class Main(QtWidgets.QMainWindow):
         self.ui.combo_blanchiment = QtWidgets.QComboBox()
         self.ui.input_compte_gl = QtWidgets.QLineEdit()
         self.ui.input_id_rebut = QtWidgets.QLineEdit()
+        self.ui.input_ligne_qrcode = QtWidgets.QLineEdit()
+        
+        
 
         self.ui.combo_ville.addItems(("","Marseille",
                                         "Montpellier",
@@ -45,13 +52,15 @@ class Main(QtWidgets.QMainWindow):
                                         "Chambéry"
                                         ))
         
-        self.ui.combo_grade.addItems(("Grade A",
+        self.ui.combo_grade.addItems(("",
+                                      "Grade A",
                                     "Grade B",
                                     "Grade C",
                                     "Grade D"
                                     ))
         
-        self.ui.combo_blanchiment.addItems(("Blanchiment OK",
+        self.ui.combo_blanchiment.addItems(("",
+                                            "Blanchiment OK",
                                             "Blanchiment KO"
                                             ))
         
@@ -59,6 +68,9 @@ class Main(QtWidgets.QMainWindow):
         self.ui.combo_site.currentTextChanged.connect(self._updateCombo_entrepot_physique)
         self.ui.combo_etat.currentTextChanged.connect(self._updateCombo_sous_etat)
         self.ui.combo_sous_etat.currentTextChanged.connect(self._updateCombo_motif)
+        #self.ui.input_ligne_qrcode.insert(self.test)
+
+
         
         self.ui.combo_etat.addItems(("En stock","En cours d'utilisation","En cours de transit"))
         
@@ -76,6 +88,8 @@ class Main(QtWidgets.QMainWindow):
         self.ui.layout.addWidget(self.ui.label_blanchiment,9,0)
         self.ui.layout.addWidget(self.ui.label_compte_gl,10,0)
         self.ui.layout.addWidget(self.ui.label_id_rebut,11,0)
+        self.ui.layout.addWidget(self.ui.label_ligne_qrcode,12,0)
+        
        
         self.ui.layout.addWidget(self.ui.combo_ville,1,1)
         self.ui.layout.addWidget(self.ui.combo_site,2,1)
@@ -88,6 +102,8 @@ class Main(QtWidgets.QMainWindow):
         self.ui.layout.addWidget(self.ui.combo_blanchiment,9,1)
         self.ui.layout.addWidget(self.ui.input_compte_gl,10,1)
         self.ui.layout.addWidget(self.ui.input_id_rebut,11,1)
+        self.ui.layout.addWidget(self.ui.input_ligne_qrcode,12,1)
+        
                 
         self.ui.setLayout(self.ui.layout)
         self.show()
@@ -217,7 +233,13 @@ class Main(QtWidgets.QMainWindow):
             self.ui.combo_entrepot_physique.addItems(("IFG - 38 - ETANG 134_BATIMENT PH3_1 ETG_LOCAL INFOGERANT",))
         elif text == "TECHNOLAC":
             self.ui.combo_entrepot_physique.addItems(("IFG - 73 - TECHNOLAC_CENTAURE_RDC AILE BELLEDONNE_BUREAU INFOGERANT",))
-         
+
+
+    def find(self,content):
+        self.ui.combo_entrepot_physique.currentText()
+        return content
+
+   
             
 if __name__== '__main__':
     app = QtWidgets.QApplication([])
