@@ -8,19 +8,6 @@ class Main(QtWidgets.QMainWindow):
         self.ui = QtWidgets.QWidget(self)
         
         self.setCentralWidget(self.ui)
-        
-
-        self.ui.combo_ville = QtWidgets.QComboBox()
-        self.ui.combo_site = QtWidgets.QComboBox()
-        self.ui.combo_entrepot_physique = QtWidgets.QComboBox()
-        self.ui.input_entrepot_logique = QtWidgets.QLineEdit()
-        self.ui.combo_etat = QtWidgets.QComboBox()
-        self.ui.combo_sous_etat = QtWidgets.QComboBox()
-        self.ui.combo_motif = QtWidgets.QComboBox()
-        self.ui.combo_grade = QtWidgets.QComboBox()
-        self.ui.combo_blanchiment = QtWidgets.QComboBox()
-        self.ui.input_compte_gl = QtWidgets.QLineEdit()
-        self.ui.input_id_rebut = QtWidgets.QLineEdit()
 
         self.ui.label_ville = QtWidgets.QLabel("Ville")
         self.ui.label_Site = QtWidgets.QLabel("Site")
@@ -33,8 +20,18 @@ class Main(QtWidgets.QMainWindow):
         self.ui.label_blanchiment = QtWidgets.QLabel("Blanchiment")
         self.ui.label_compte_gl = QtWidgets.QLabel("Compte GL")
         self.ui.label_id_rebut = QtWidgets.QLabel("ID Rebut")
-
-
+        
+        self.ui.combo_ville = QtWidgets.QComboBox()
+        self.ui.combo_site = QtWidgets.QComboBox()
+        self.ui.combo_entrepot_physique = QtWidgets.QComboBox()
+        self.ui.input_entrepot_logique = QtWidgets.QLineEdit()
+        self.ui.combo_etat = QtWidgets.QComboBox()
+        self.ui.combo_sous_etat = QtWidgets.QComboBox()
+        self.ui.combo_motif = QtWidgets.QComboBox()
+        self.ui.combo_grade = QtWidgets.QComboBox()
+        self.ui.combo_blanchiment = QtWidgets.QComboBox()
+        self.ui.input_compte_gl = QtWidgets.QLineEdit()
+        self.ui.input_id_rebut = QtWidgets.QLineEdit()
 
         self.ui.combo_ville.addItems(("","Marseille",
                                         "Montpellier",
@@ -67,18 +64,6 @@ class Main(QtWidgets.QMainWindow):
         
  
         self.ui.layout = QtWidgets.QGridLayout()
-        self.ui.layout.addWidget(self.ui.combo_ville,1,1)
-        self.ui.layout.addWidget(self.ui.combo_site,2,1)
-        self.ui.layout.addWidget(self.ui.combo_entrepot_physique,3,1)
-        self.ui.layout.addWidget(self.ui.input_entrepot_logique,4,1)
-        self.ui.layout.addWidget(self.ui.combo_etat,5,1)
-        self.ui.layout.addWidget(self.ui.combo_sous_etat,6,1)
-        self.ui.layout.addWidget(self.ui.combo_motif,7,1)
-        self.ui.layout.addWidget(self.ui.combo_grade,8,1)
-        self.ui.layout.addWidget(self.ui.combo_blanchiment,9,1)
-        self.ui.layout.addWidget(self.ui.input_compte_gl,10,1)
-        self.ui.layout.addWidget(self.ui.input_id_rebut,11,1)
-
 
         self.ui.layout.addWidget(self.ui.label_ville,1,0)
         self.ui.layout.addWidget(self.ui.label_Site,2,0)
@@ -92,11 +77,19 @@ class Main(QtWidgets.QMainWindow):
         self.ui.layout.addWidget(self.ui.label_compte_gl,10,0)
         self.ui.layout.addWidget(self.ui.label_id_rebut,11,0)
        
+        self.ui.layout.addWidget(self.ui.combo_ville,1,1)
+        self.ui.layout.addWidget(self.ui.combo_site,2,1)
+        self.ui.layout.addWidget(self.ui.combo_entrepot_physique,3,1)
+        self.ui.layout.addWidget(self.ui.input_entrepot_logique,4,1)
+        self.ui.layout.addWidget(self.ui.combo_etat,5,1)
+        self.ui.layout.addWidget(self.ui.combo_sous_etat,6,1)
+        self.ui.layout.addWidget(self.ui.combo_motif,7,1)
+        self.ui.layout.addWidget(self.ui.combo_grade,8,1)
+        self.ui.layout.addWidget(self.ui.combo_blanchiment,9,1)
+        self.ui.layout.addWidget(self.ui.input_compte_gl,10,1)
+        self.ui.layout.addWidget(self.ui.input_id_rebut,11,1)
+                
         self.ui.setLayout(self.ui.layout)
-
-        
-
-
         self.show()
  
     def _updateCombo_sous_etat(self, text):
@@ -114,7 +107,7 @@ class Main(QtWidgets.QMainWindow):
                             "Réservé",
                             "Spare"))
         elif text == "En cours d'utilisation":
-            self.ui.combo_sous_etat.addItems(("En cours de RETEX",))
+            self.ui.combo_sous_etat.addItems(("En cours de RETEX","Utilisé"))
     
     def _updateCombo_motif(self, text):
         self.ui.combo_motif.clear()
@@ -170,9 +163,7 @@ class Main(QtWidgets.QMainWindow):
             
         elif text == "Chambéry":
             self.ui.combo_site.addItems(("TECHNOLAC",))
-            
-
-
+  
     def _updateCombo_entrepot_physique(self, text):
         self.ui.combo_entrepot_physique.clear()
         if text == "Viton 140":
@@ -217,14 +208,14 @@ class Main(QtWidgets.QMainWindow):
                                         "IFG - 38 - SAINT ALBAN_BES_SS 1_BA 04 12 (SALLE TELECOM)",
                                         "IFG - 38 - SAINT ALBAN_PILAT_2 ETG_ESPACE IT",
                                         ))
-        elif text == "Bugey":
+        elif text == "CNPE Bugey":
             self.ui.combo_entrepot_physique.addItems(("IFG - 01 - CAMP LA VALBONNE_BAT. 36_RDC_36C006 ESPACE IT",
                                         "IFG - 01 - CAMP LA VALBONNE_BAT. 36_RDC_36D002",
                                         "IFG - 01 - SAINT VULBAS_BAT. 02_RDC_2008",
                                         ))
-        elif text == "Grenoble":
+        elif text == "ETANG 134":
             self.ui.combo_entrepot_physique.addItems(("IFG - 38 - ETANG 134_BATIMENT PH3_1 ETG_LOCAL INFOGERANT",))
-        elif text == "Chambéry":
+        elif text == "TECHNOLAC":
             self.ui.combo_entrepot_physique.addItems(("IFG - 73 - TECHNOLAC_CENTAURE_RDC AILE BELLEDONNE_BUREAU INFOGERANT",))
          
             
